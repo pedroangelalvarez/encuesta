@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
@@ -6,6 +6,15 @@ const Formulario = () => {
   const [searchParams] = useSearchParams();
   const numeroTelefono = searchParams.get("numeroTelefono");
   const idTicket = searchParams.get("idTicket");
+
+  useEffect(() => {
+    const ticketId = searchParams.get('ticketId');
+    const telephone = searchParams.get('telephone');
+
+    if (!ticketId || !telephone) {
+      alert('El link es incorrecto. Debe incluir los parámetros ticketId y telephone.');
+    }
+  }, [searchParams]);
 
   const [formData, setFormData] = useState({
     atencionTecnico: "",
