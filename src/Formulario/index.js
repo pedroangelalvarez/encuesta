@@ -64,6 +64,9 @@ const Formulario = () => {
       return;
     }
 
+    const idTicket = searchParams.get('ticketId');
+    const numeroTelefono = searchParams.get('telephone');
+
     // Crear payload para el endpoint
     const payload = {
       telefono: numeroTelefono,
@@ -144,9 +147,9 @@ const Formulario = () => {
         {/* Pregunta 3 */}
         <div style={styles.question}>
           <label style={styles.label}>
-            ¿Estás satisfecho con el tiempo de respuesta? (1 = Muy insatisfecho, 5 = Muy satisfecho) <span style={styles.required}>*</span>
+            ¿Estás satisfecho con el tiempo de respuesta? <span style={styles.required}>*</span>
           </label>
-          {[1, 2, 3, 4, 5].map((value) => (
+          {["1 = Muy insatisfecho","2 = Insatisfecho", "3 = Neutro","4 = Satifecho", "5 = Muy satisfecho"].map((value) => (
             <label key={value} style={styles.option}>
               <input
                 type="radio"
