@@ -55,6 +55,7 @@ const Formulario = () => {
   // Enviar los datos del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
 
     // Validar campos
     const validationErrors = validateForm();
@@ -103,9 +104,9 @@ const Formulario = () => {
         {/* Pregunta 1 */}
         <div style={styles.question}>
           <label style={styles.label}>
-            ¿Cómo calificarías la atención del técnico? (1 = Muy mala, 5 = Excelente) <span style={styles.required}>*</span>
+            ¿Cómo calificarías la atención del técnico?<span style={styles.required}>*</span>
           </label>
-          {[1, 2, 3, 4, 5].map((value) => (
+          {["1 = Muy mala","2 = Mala", "3 = Aceptable","4 = Buena", "5 = Excelente"].map((value) => (
             <label key={value} style={styles.option}>
               <input
                 type="radio"
