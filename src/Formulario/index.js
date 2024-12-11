@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import thankyouimage from "../assets/thakyouimage.jpg";
 
 const Formulario = () => {
   const [searchParams] = useSearchParams();
   const numeroTelefono = searchParams.get("numeroTelefono");
   const idTicket = searchParams.get("idTicket");
+  const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
     const ticketId = searchParams.get('ticketId');
@@ -93,6 +95,7 @@ const Formulario = () => {
         recomendarServicio: "",
         feedback: "",
       });
+      setShowImage(true);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       alert("Ocurrió un error al enviar la encuesta. Por favor, intenta nuevamente.");
@@ -103,6 +106,14 @@ const Formulario = () => {
     <div style={styles.container}>
       <h1 style={styles.title}>Encuesta de Satisfacción</h1>
       {successMessage && <p style={styles.success}>{successMessage}</p>}
+      {showImage && (
+        <img
+          src={thankyouimage} 
+          alt="ThankYouImage"
+          style={styles.image}
+        />
+      )}
+      {!showImage && (
       <form onSubmit={handleSubmit} style={styles.form}>
         {/* Pregunta 1 */}
         <div style={styles.question}>
@@ -200,6 +211,7 @@ const Formulario = () => {
           Enviar Respuestas
         </button>
       </form>
+       )}
     </div>
   );
 };
@@ -258,6 +270,11 @@ const styles = {
       border: "none",
       borderRadius: "5px",
       cursor: "pointer",
+    },
+    image: {
+      marginBottom: "20px", // Añade un espacio debajo de la imagen
+      maxWidth: "100%",
+      height: "auto",
     },
   };
 
